@@ -1,0 +1,27 @@
+# Secrets and local configuration
+.env
+**/.env
+!.env.example
+
+# Dependencies and generated files
+vendor/
+**/vendor/
+*.log
+logs/
+**/logs/
+cache/
+**/cache/
+*.tmp
+*.temp
+*.zip
+*.7z
+*.rar
+
+# Local executables and operating-system files
+*.exe
+Thumbs.db
+.DS_Store
+
+# Editor and IDE configuration
+.vscode/
+.idea/
