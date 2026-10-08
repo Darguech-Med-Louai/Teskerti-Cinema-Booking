@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TESKERTI - Cinema Tunisien</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+      <!-- GAUCHE : Logo -->
+      <div class="nav-left">
+        <div class="nav-logo" data-view="home" style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+          <div class="logo-icon">
+            <svg width="36" height="36" viewBox="0 0 36 36">
+              <circle cx="18" cy="18" r="18" fill="#F5C518"/>
+              <circle cx="18" cy="18" r="8" fill="#0A0A0A"/>
+              <circle cx="18" cy="18" r="3" fill="#F5C518"/>
+              <rect x="7" y="16" width="22" height="4" fill="#0A0A0A" transform="rotate(0 18 18)"/>
+              <rect x="7" y="16" width="22" height="4" fill="#0A0A0A" transform="rotate(60 18 18)"/>
+              <rect x="7" y="16" width="22" height="4" fill="#0A0A0A" transform="rotate(120 18 18)"/>
+              <circle cx="10" cy="18" r="2" fill="#F5C518"/>
+              <circle cx="26" cy="18" r="2" fill="#F5C518"/>
+              <circle cx="14" cy="11.07" r="2" fill="#F5C518"/>
+              <circle cx="22" cy="24.93" r="2" fill="#F5C518"/>
+              <circle cx="22" cy="11.07" r="2" fill="#F5C518"/>
+              <circle cx="14" cy="24.93" r="2" fill="#F5C518"/>
+            </svg>
+          </div>
+          <span class="logo-text" style="font-family: var(--font-hero); font-size: 2.2rem; color: var(--gold); letter-spacing: 2px;">TESKERTI</span>
+        </div>
+      </div>
+
+      <!-- CENTRE : Liens de navigation -->
+      <div class="nav-center">
+        <a href="#" class="nav-link active" data-view="home">FILMS</a>
+        <a href="#" class="nav-link" data-view="cinemas">CINEMAS</a>
+      </div>
+
+      <!-- DROITE : Auth -->
+      <div class="nav-right">
+        <!-- Etat non connecte -->
+        <div class="nav-auth" id="nav-auth-guest">
+          <button class="btn-login" data-modal="login">
+            CONNEXION
+          </button>
+        </div>
+
+        <!-- Etat connecte (cache par defaut) -->
+        <div class="nav-auth hidden" id="nav-auth-user">
+          <div class="user-avatar" id="user-avatar">
+            <span id="user-initials">AB</span>
+          </div>
+          <div class="user-dropdown" id="user-dropdown">
+            <div class="dropdown-header" style="padding: 10px 16px; border-bottom: 1px solid #2A2A2A; margin-bottom: 8px;">
+              <div id="dropdown-name" style="font-weight: 600; color: #fff;">Ahmed Ben Ali</div>
+              <div id="dropdown-email" style="font-size: 12px; color: #888;">utilisateur@example.com</div>
+            </div>
+            <a href="#" class="dropdown-item" style="display:block; padding:8px 16px; color:#ccc;" data-view="bookings">
+              Mes Reservations
+            </a>
+            <a href="#" class="dropdown-item" style="display:block; padding:8px 16px; color:#ccc;">
+              Mon Profil
+            </a>
+            <div class="dropdown-divider" style="height:1px; background:#2A2A2A; margin:8px 0;"></div>
+            <a href="#" class="dropdown-item danger" style="display:block; padding:8px 16px; color:#f87171;" id="logout-btn">
+              Deconnexion
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN SPA CONTAINER -->
+    <main id="app">
+        <!-- Content injected by JS -->
+    </main>
+
+    <!-- AUTH MODAL -->
+    <div class="modal-overlay" id="auth-modal">
+      <div class="modal-container">
+        <button class="modal-close" data-modal="close">X</button>
+
+
+        <!-- GAUCHE : Decoratif -->
+        <div class="modal-visual">
+          <div class="modal-visual-overlay"></div>
+          <div class="modal-visual-content">
+            <div class="modal-logo" style="margin-bottom:20px;">
+              <svg width="60" height="60" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="18" fill="#F5C518"/>
+                <circle cx="18" cy="18" r="8" fill="#0A0A0A"/>
+                <circle cx="18" cy="18" r="3" fill="#F5C518"/>
+                <rect x="7" y="16" width="22" height="4" fill="#0A0A0A" transform="rotate(0 18 18)"/>
+                <rect x="7" y="16" width="22" height="4" fill="#0A0A0A" transform="rotate(60 18 18)"/>
+                <rect x="7" y="16" width="22" height="4" fill="#0A0A0A" transform="rotate(120 18 18)"/>
+                <circle cx="10" cy="18" r="2" fill="#F5C518"/>
+                <circle cx="26" cy="18" r="2" fill="#F5C518"/>
+                <circle cx="14" cy="11.07" r="2" fill="#F5C518"/>
+                <circle cx="22" cy="24.93" r="2" fill="#F5C518"/>
+                <circle cx="22" cy="11.07" r="2" fill="#F5C518"/>
+                <circle cx="14" cy="24.93" r="2" fill="#F5C518"/>
+              </svg>
+            </div>
+            <p class="modal-tagline">
+              "Le cinema, c'est une fenetre sur le monde."
+            </p>
+          </div>
+        </div>
+
+        <!-- DROITE : Formulaire -->
+        <div class="modal-form-panel">
+          <div class="auth-tabs">
+            <button type="button" class="auth-tab active" data-tab="login">Connexion</button>
+            <button type="button" class="auth-tab" data-tab="register">Creer un compte</button>
+          </div>
+
+
+          <form class="auth-form active" id="form-login">
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="vous@example.com" id="login-email" required />
+            </div>
+            <div class="form-group">
+              <label>Mot de passe</label>
+              <div class="input-password-wrap">
+                <input type="password" placeholder="********" id="login-password" required />
+                <button type="button" class="toggle-pw">[EYE]</button>
+              </div>
+            </div>
+            <a class="forgot-link">Mot de passe oublie ?</a>
+            <button type="submit" class="btn-auth-submit">SE CONNECTER</button>
+            <div class="auth-divider"><span>ou</span></div>
+            <button type="button" class="btn-social google">Continuer avec Google</button>
+          </form>
+
+          <form class="auth-form" id="form-register">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Prenom</label>
+                <input type="text" placeholder="Ahmed" id="reg-fname" required/>
+              </div>
+              <div class="form-group">
+                <label>Nom</label>
+                <input type="text" placeholder="Ben Ali" id="reg-lname" required/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="vous@example.com" id="reg-email" required />
+            </div>
+            <div class="form-group">
+              <label>Telephone (optionnel)</label>
+              <input type="tel" placeholder="+216 XX XXX XXX" id="reg-phone" />
+            </div>
+            <div class="form-group">
+              <label>Mot de passe</label>
+              <input type="password" placeholder="Min. 8 caracteres" id="reg-password" required />
+              <div class="pw-strength" id="pw-strength"></div>
+            </div>
+            <button type="submit" class="btn-auth-submit">CREER MON COMPTE</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAIEMENT -->
+    <section class="payment-section" id="payment-page" style="display:none;">
+      <div class="booking-stepper">
+        <div class="step done"><span class="step-number">[OK]</span><span class="step-label">Places</span></div>
+        <div class="step-line done"></div>
+        <div class="step done"><span class="step-number">[OK]</span><span class="step-label">Tarifs</span></div>
+        <div class="step-line active"></div>
+        <div class="step active"><span class="step-number">3</span><span class="step-label">Paiement</span></div>
+        <div class="step-line"></div>
+        <div class="step"><span class="step-number">4</span><span class="step-label">Confirmation</span></div>
+      </div>
+      <div class="payment-layout">
+        <!-- GAUCHE : Formulaire carte Visa -->
+        <div class="payment-form-wrap">
+          <div class="payment-header">
+            <div class="payment-title-row">
+              <h2 class="payment-title">Paiement securise</h2>
+              <div class="security-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                SSL 256-bit
+              </div>
+            </div>
+            <p class="payment-subtitle">Paiement accepte uniquement par carte Visa</p>
+          </div>
+
+          <div class="card-visual-container">
+            <div class="card-visual" id="card-visual">
+              <div class="card-front">
+                <div class="card-chip">
+                  <svg width="40" height="32" viewBox="0 0 40 32"><rect width="40" height="32" rx="4" fill="#C8A84B"/><rect x="6" y="6" width="28" height="20" rx="2" fill="none" stroke="#8B6914" stroke-width="1.5"/><line x1="20" y1="6" x2="20" y2="26" stroke="#8B6914" stroke-width="1.5"/><line x1="6" y1="16" x2="34" y2="16" stroke="#8B6914" stroke-width="1.5"/></svg>
+                </div>
+                <div class="card-number-display" id="card-number-display">**** **** **** ****</div>
+                <div class="card-bottom-row">
+                  <div class="card-holder-wrap">
+                    <span class="card-label">Titulaire</span>
+                    <span class="card-holder-display" id="card-holder-display">PRENOM NOM</span>
+                  </div>
+                  <div class="card-expiry-wrap">
+                    <span class="card-label">Expire le</span>
+                    <span class="card-expiry-display" id="card-expiry-display">MM/AA</span>
+                  </div>
+                  <div class="card-brand">
+                    <svg width="60" height="20" viewBox="0 0 60 20"><text x="0" y="16" font-family="Arial, sans-serif" font-weight="900" font-size="18" font-style="italic" fill="#FFFFFF" letter-spacing="-1">VISA</text></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="card-back">
+                <div class="card-back-stripe"></div>
+                <div class="card-cvv-row">
+                  <span class="card-cvv-label">CVV</span>
+                  <div class="card-cvv-band"><span id="card-cvv-display">***</span></div>
+                </div>
+                <div class="card-back-brand">
+                  <svg width="50" height="16" viewBox="0 0 60 20"><text x="0" y="16" font-family="Arial" font-weight="900" font-size="18" font-style="italic" fill="rgba(255,255,255,0.4)" letter-spacing="-1">VISA</text></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form class="payment-form" id="payment-form" onsubmit="return false;">
+            <div class="pf-group">
+              <label class="pf-label">Numero de carte <span class="visa-only-tag">Visa uniquement</span></label>
+              <div class="pf-input-wrap">
+                <input type="text" id="card-number" class="pf-input" placeholder="0000 0000 0000 0000" maxlength="19" inputmode="numeric" autocomplete="cc-number"/>
+                <div class="input-card-icon" id="input-card-icon">
+                  <svg width="36" height="12" viewBox="0 0 60 20"><text x="0" y="16" font-family="Arial" font-weight="900" font-size="18" font-style="italic" fill="#1A1F71" letter-spacing="-1">VISA</text></svg>
+                </div>
+              </div>
+              <span class="pf-error" id="err-card-number"></span>
+            </div>
+            <div class="pf-group">
+              <label class="pf-label">Nom du titulaire</label>
+              <input type="text" id="card-holder" class="pf-input" placeholder="PRENOM NOM (comme sur la carte)" maxlength="26" autocomplete="cc-name"/>
+              <span class="pf-error" id="err-card-holder"></span>
+            </div>
+            <div class="pf-row">
+              <div class="pf-group">
+                <label class="pf-label">Date d'expiration</label>
+                <input type="text" id="card-expiry" class="pf-input" placeholder="MM/AA" maxlength="5" inputmode="numeric" autocomplete="cc-exp"/>
+                <span class="pf-error" id="err-card-expiry"></span>
+              </div>
+              <div class="pf-group">
+                <label class="pf-label">CVV <button type="button" class="cvv-tooltip-btn" id="cvv-info-btn">?</button></label>
+                <input type="password" id="card-cvv" class="pf-input" placeholder="***" maxlength="3" inputmode="numeric" autocomplete="cc-csc"/>
+                <span class="pf-error" id="err-card-cvv"></span>
+              </div>
+            </div>
+            <div class="cvv-tooltip" id="cvv-tooltip">
+              <p>Le CVV est le code de 3 chiffres situe au verso de votre carte Visa.</p>
+            </div>
+            <div class="pf-checkbox-row">
+              <label class="pf-checkbox-label">
+                <input type="checkbox" id="save-card"/>
+                <span class="pf-checkbox-custom"></span>
+                Memoriser cette carte pour mes prochaines reservations
+              </label>
+            </div>
+            <button class="btn-pay" id="btn-pay">
+              <span class="btn-pay-text" id="btn-pay-text">PAYER <span id="btn-pay-amount">0.000 TND</span></span>
+
+              <div class="btn-pay-loader hidden" id="btn-pay-loader"><div class="pay-spinner"></div></div>
+            </button>
+            <div class="payment-security-row">
+              <div class="security-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Paiement 100% securise
+              </div>
+              <div class="security-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                Remboursement sous 7 jours
+              </div>
+              <div class="security-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Donnees chiffrees
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- DROITE : Recapitulatif commande -->
+        <div class="payment-summary">
+          <h3 class="summary-title">Recapitulatif</h3>
+          <div class="summary-movie-card">
+            <img class="summary-poster" id="summary-poster" src="" alt=""/>
+            <div class="summary-movie-info">
+              <p class="summary-movie-title" id="summary-movie-title">--</p>
+              <p class="summary-cinema" id="summary-cinema">--</p>
+              <p class="summary-date" id="summary-date">--</p>
+              <p class="summary-time" id="summary-time">--</p>
+            </div>
+          </div>
+          <div class="summary-tickets" id="summary-tickets"></div>
+          <div class="summary-divider"></div>
+          <div class="summary-line">
+            <span>Frais de service</span>
+            <span id="summary-service-fee">1.000 TND</span>
+          </div>
+          <div class="summary-total-line">
+            <span class="summary-total-label">TOTAL A PAYER</span>
+            <span class="summary-total-amount" id="summary-total">0.000 TND</span>
+          </div>
+          <div class="summary-promo" id="summary-promo-applied" style="display:none">
+            <span class="promo-icon">[PROMO]</span>
+            <span id="summary-promo-text">Code promo applique</span>
+            <span id="summary-promo-discount" class="promo-discount">-0.000 TND</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONFIRMATION -->
+    <section class="confirmation-section" id="confirmation-page" style="display:none">
+      <div class="confirmation-wrap">
+        <div class="success-animation">
+          <svg class="checkmark-svg" viewBox="0 0 52 52" width="80" height="80">
+            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none" stroke="#F5C518" stroke-width="2"/>
+            <path class="checkmark-check" fill="none" stroke="#F5C518" stroke-width="3" d="M14 27l8 8 16-16"/>
+          </svg>
+        </div>
+        <h1 class="confirm-title">Reservation confirmee !</h1>
+        <p class="confirm-subtitle">Votre billet a ete envoye a <strong id="confirm-email">---</strong></p>
+        <div class="ticket-card" id="ticket-card">
+          <div class="ticket-left">
+            <div class="ticket-header">
+              <div class="ticket-logo-small">T</div>
+              <span>TESKERTI</span>
+            </div>
+            <p class="ticket-movie-name" id="ticket-movie-name">---</p>
+            <div class="ticket-details-grid">
+              <div><span class="ticket-label">Cinema</span><span class="ticket-value" id="ticket-cinema">---</span></div>
+              <div><span class="ticket-label">Date</span><span class="ticket-value" id="ticket-date">--</span></div>
+              <div><span class="ticket-label">Seance</span><span class="ticket-value" id="ticket-time">--</span></div>
+              <div><span class="ticket-label">Places</span><span class="ticket-value" id="ticket-seats">--</span></div>
+            </div>
+            <div class="ticket-total-row">
+              <span>Montant paye</span>
+              <span class="ticket-amount" id="ticket-amount">--</span>
+            </div>
+          </div>
+          <div class="ticket-separator">
+            <div class="ticket-hole top"></div>
+            <div class="ticket-hole bottom"></div>
+          </div>
+          <div class="ticket-right">
+            <div class="ticket-qr" id="ticket-qr"></div>
+            <p class="ticket-ref" id="ticket-ref">#TSK-000000</p>
+            <p class="ticket-qr-label">Presentez ce code a l'entree</p>
+          </div>
+        </div>
+        <div class="confirm-actions">
+          <button class="btn-download-ticket" id="btn-download-ticket">Telecharger le billet</button>
+          <button class="btn-back-home" id="btn-confirm-home">Retour a l'accueil</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <!-- Logo SVG + Wordmark -->
+                    <a href="#" class="footer-logo-wrap" data-view="home">
+                        <svg width="36" height="36" viewBox="0 0 36 36">
+                            <circle cx="18" cy="18" r="18" fill="#F5C518"/>
+                            <circle cx="18" cy="18" r="8" fill="#0A0A0A"/>
+                            <circle cx="18" cy="18" r="3" fill="#F5C518"/>
+                            <rect x="7" y="16" width="22" height="4" fill="#0A0A0A" transform="rotate(0 18 18)"/>
+                            <rect x="7" y="16" width="22" height="4" fill="#0A0A0A" transform="rotate(60 18 18)"/>
+                            <rect x="7" y="16" width="22" height="4" fill="#0A0A0A" transform="rotate(120 18 18)"/>
+                            <circle cx="10" cy="18" r="2" fill="#F5C518"/>
+                            <circle cx="26" cy="18" r="2" fill="#F5C518"/>
+                            <circle cx="14" cy="11.07" r="2" fill="#F5C518"/>
+                            <circle cx="22" cy="24.93" r="2" fill="#F5C518"/>
+                            <circle cx="22" cy="11.07" r="2" fill="#F5C518"/>
+                            <circle cx="14" cy="24.93" r="2" fill="#F5C518"/>
+                        </svg>
+                        <span class="footer-logo-text">TESKERTI</span>
+                    </a>
+                    <p class="footer-tagline">La premiere plateforme de reservation de billets de cinema en Tunisie. Profitez des meilleurs films tunisiens et internationaux.</p>
+                    <!-- Reseaux sociaux -->
+                    <div class="footer-socials">
+                        <a href="#" class="social-icon" title="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon" title="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="#" class="social-icon" title="Twitter / X">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="#" class="social-icon" title="YouTube">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon fill="#111" points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Films</h4>
+                    <ul>
+                        <li><a href="#" data-view="home">A l'affiche</a></li>
+                        <li><a href="#" data-view="home">Prochainement</a></li>
+                        <li><a href="#">Festivals</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Cinemas</h4>
+                    <ul>
+                        <li><a href="#" data-view="cinemas">Grand Tunis</a></li>
+                        <li><a href="#" data-view="cinemas">Sousse</a></li>
+                        <li><a href="#" data-view="cinemas">Sfax</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Compte</h4>
+                    <ul>
+                        <li><a href="#">Mes reservations</a></li>
+                        <li><a href="#">Profil</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 Teskerti. Tous droits reserves. Construit avec passion pour le cinema tunisien.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script type="module" src="js/app.js"></script>
+
+</body>
+</html>
