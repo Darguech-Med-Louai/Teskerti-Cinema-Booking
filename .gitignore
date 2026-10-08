@@ -6,6 +6,7 @@
 # Dependencies and generated files
 vendor/
 **/vendor/
+/tools/screenshots/node_modules/
 *.log
 logs/
 **/logs/

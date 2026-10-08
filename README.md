@@ -1,10 +1,56 @@
+![TESKERTI — Le cinéma tunisien à portée de clic](docs/images/social-preview.png)
+
 # TESKERTI — Plateforme de réservation de billets de cinéma
 
 TESKERTI est un projet de réservation de cinéma composé d'une interface web SPA en JavaScript natif et d'une API PHP connectée à MySQL/MariaDB. L'API fournit le catalogue, les séances, les sièges, les réservations, l'authentification et un traitement de paiement **simulé**.
 
 ## Captures et démonstration
 
-Aucune capture d'écran ni vidéo de démonstration n'était présente dans les fichiers source au moment de la publication.
+**Paiement simulé : ne saisissez jamais de vraie carte.** Les captures utilisent uniquement des données fictives et une carte Visa de test.
+
+### Parcours desktop
+
+| Accueil | Film et séance |
+| --- | --- |
+| ![Accueil TESKERTI et films à l'affiche](docs/screenshots/01-accueil.png) | ![Détail du film et parcours de réservation](docs/screenshots/02-detail-film-seances.png) |
+
+| Cinémas | Connexion |
+| --- | --- |
+| ![Liste des cinémas partenaires](docs/screenshots/03-cinemas.png) | ![Modale de connexion](docs/screenshots/04-connexion.png) |
+
+| Inscription | Plan de salle |
+| --- | --- |
+| ![Formulaire d'inscription avec données fictives](docs/screenshots/05-inscription.png) | ![Plan de salle et places sélectionnées](docs/screenshots/06-plan-de-salle.png) |
+
+| Récapitulatif | Paiement de test |
+| --- | --- |
+| ![Récapitulatif de commande avec le code TESKERTI10](docs/screenshots/07-recapitulatif.png) | ![Formulaire de paiement rempli avec une carte Visa de test](docs/screenshots/08-paiement.png) |
+
+![Confirmation de réservation avec référence et QR de démonstration](docs/screenshots/09-confirmation.png)
+
+### Aperçus mobile
+
+| Accueil mobile | Plan de salle mobile | Billet mobile |
+| --- | --- | --- |
+| ![Accueil TESKERTI sur un écran mobile](docs/screenshots/10-mobile-accueil.png) | ![Plan de salle sur un écran mobile](docs/screenshots/11-mobile-plan-de-salle.png) | ![Billet de démonstration sur un écran mobile](docs/screenshots/12-mobile-billet.png) |
+
+### Visuels de présentation
+
+![Mockup TESKERTI sur ordinateur et mobile](docs/images/mockup-desktop-mobile.png)
+
+![Schéma de l'architecture TESKERTI et du paiement simulé](docs/images/architecture.png)
+
+Les URL des affiches et photos présentes dans les données de démonstration pointent vers Unsplash. Pour ces images publiées, le script Playwright remplace les réponses distantes par des illustrations génériques afin d'éviter d'intégrer des affiches ou photos externes aux captures.
+
+Le code promo du récapitulatif est transmis par le scénario de démonstration (l'interface actuelle ne présente pas de champ promo). Le QR affiché sur les billets est généré localement par le script à partir de la référence de réservation; l'API de démonstration ne fournit pas actuellement un fichier QR exploitable.
+
+Pour régénérer les captures et visuels, démarrez d'abord l'API et le frontend avec une base de démonstration contenant une séance future, puis lancez depuis `tools/screenshots/` :
+
+```sh
+npm install
+npx playwright install chromium
+npm run screenshots
+```
 
 ## Fonctionnalités vérifiées dans le code
 

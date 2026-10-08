@@ -1,0 +1,13 @@
+{
+  "name": "teskerti-screenshots",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "screenshots": "node capture.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.64.0",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.35.5"
+  }
+}
